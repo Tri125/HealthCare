@@ -64,7 +64,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Citoyen.cpp" />
+    <ClCompile Include="Hospitalisation.cpp" />
+    <ClCompile Include="Professionnel.cpp" />
     <ClCompile Include="Prototype.cpp" />
+    <ClCompile Include="RendezVous.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="biblio.h" />
+    <ClInclude Include="Citoyen.h" />
+    <ClInclude Include="Hospitalisation.h" />
+    <ClInclude Include="Professionnel.h" />
+    <ClInclude Include="RendezVous.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

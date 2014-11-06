@@ -18,5 +18,34 @@
     <ClCompile Include="Prototype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Citoyen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Professionnel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RendezVous.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hospitalisation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Citoyen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="biblio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Professionnel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RendezVous.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Hospitalisation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
