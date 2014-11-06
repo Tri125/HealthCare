@@ -9,3 +9,4 @@ using namespace std;
 #include "Professionnel.h"
 #include "RendezVous.h"
 #include "Hospitalisation.h"
+#include "Probleme.h"

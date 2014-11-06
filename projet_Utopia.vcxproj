@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="Citoyen.cpp" />
     <ClCompile Include="Hospitalisation.cpp" />
+    <ClCompile Include="Probleme.cpp" />
     <ClCompile Include="Professionnel.cpp" />
     <ClCompile Include="Prototype.cpp" />
     <ClCompile Include="RendezVous.cpp" />
@@ -74,6 +75,7 @@
     <ClInclude Include="biblio.h" />
     <ClInclude Include="Citoyen.h" />
     <ClInclude Include="Hospitalisation.h" />
+    <ClInclude Include="Probleme.h" />
     <ClInclude Include="Professionnel.h" />
     <ClInclude Include="RendezVous.h" />
   </ItemGroup>
