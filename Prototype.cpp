@@ -7,9 +7,7 @@
 /------------------------------------------------*/
 
 
-#include <iostream>
-#include <string>
-using namespace std;
+#include "biblio.h"
 
 void EcranBienvenue();
 char MenuPrincipal();
@@ -36,7 +34,6 @@ void ErreurOption(char Choix);
 
 int main()
 {
-
 	char Choix = MenuPrincipal();
 	while (Choix != 'Q')
 	{
