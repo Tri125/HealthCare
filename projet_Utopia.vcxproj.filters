@@ -33,6 +33,12 @@
     <ClCompile Include="Probleme.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Blessure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Maladie.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Citoyen.h">
@@ -51,6 +57,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Probleme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Blessure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Maladie.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

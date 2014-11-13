@@ -10,3 +10,5 @@ using namespace std;
 #include "RendezVous.h"
 #include "Hospitalisation.h"
 #include "Probleme.h"
+#include "Blessure.h"
+#include "Maladie.h"

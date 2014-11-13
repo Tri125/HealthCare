@@ -8,7 +8,7 @@ protected:
    string description;
 
 public:
+   Probleme(int, string, string, string);
    Probleme();
-   ~Probleme();
 };
 

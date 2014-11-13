@@ -64,8 +64,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Blessure.cpp" />
     <ClCompile Include="Citoyen.cpp" />
     <ClCompile Include="Hospitalisation.cpp" />
+    <ClCompile Include="Maladie.cpp" />
     <ClCompile Include="Probleme.cpp" />
     <ClCompile Include="Professionnel.cpp" />
     <ClCompile Include="Prototype.cpp" />
@@ -73,8 +75,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="biblio.h" />
+    <ClInclude Include="Blessure.h" />
     <ClInclude Include="Citoyen.h" />
     <ClInclude Include="Hospitalisation.h" />
+    <ClInclude Include="Maladie.h" />
     <ClInclude Include="Probleme.h" />
     <ClInclude Include="Professionnel.h" />
     <ClInclude Include="RendezVous.h" />
