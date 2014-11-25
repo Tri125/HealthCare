@@ -6,6 +6,7 @@ void Chargement(string id, typeVision vue)
    const string FICHIER_POPULATION = "population.txt";
    const string FICHIER_PROBLEME = "problèmes.txt";
    const string FICHIER_UTILISATION = "utilisations.txt";
+   bool isFound = false;
    //const int NOMBRE_CHAMPS = 3;
    string nomFichier = FICHIER_POPULATION;
    string ligneCourante;
@@ -25,30 +26,42 @@ void Chargement(string id, typeVision vue)
    while (ficIn.good())
    {
       getline(ficIn, ligneCourante);
-      ss << ligneCourante ;
+      ss << ligneCourante;
       while (getline(ss, data, SEPARATING_SYMBOL))
       {
          human.push_back(data);
       }
       if (vue == typeVision::CITOYEN)
       {
-         if (human.size() > 0 && human.front() != id)
+         if (human.size() >= 3 && human.front() == id)
          {
-            human.clear();
-            ss.str(std::string());
-            ss.clear();
-            continue;
-            system("Pause");
+            isFound = true;
+            break;
          }
       }
       else
       {
          if (vue == typeVision::PROFESSIONNEL)
          {
-
+            if (human.size() == 5 && human[3] == id)
+            {
+               isFound = true;
+               break;
+            }
          }
       }
+      human.clear();
+      ss.str(std::string());
+      ss.clear();
    }
+   //Aucun resultat ou bon resultat ici
+   cout << isFound << endl;
+   for (string s : human)
+   {
+      cout << s << ";";
+   }
+   cout << endl;
+   system("pause");
 }
 
 void ChargementCitoyen(vector<string> citoyen, typeVision);
