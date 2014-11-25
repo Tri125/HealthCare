@@ -66,6 +66,7 @@
   <ItemGroup>
     <ClCompile Include="Blessure.cpp" />
     <ClCompile Include="Citoyen.cpp" />
+    <ClCompile Include="fonctions.cpp" />
     <ClCompile Include="Hospitalisation.cpp" />
     <ClCompile Include="Maladie.cpp" />
     <ClCompile Include="Probleme.cpp" />
@@ -77,6 +78,7 @@
     <ClInclude Include="biblio.h" />
     <ClInclude Include="Blessure.h" />
     <ClInclude Include="Citoyen.h" />
+    <ClInclude Include="fonctions.h" />
     <ClInclude Include="Hospitalisation.h" />
     <ClInclude Include="Maladie.h" />
     <ClInclude Include="Probleme.h" />

@@ -80,6 +80,7 @@ void VueDuCitoyen()
 		cout << "\n\tNuméro d'assurance sociale du citoyen\n";
 		cout << "\tNAS:";
 		cin >> strNAS;
+      Chargement(strNAS, typeVision::CITOYEN);
 		cout << "--------------------\n";
 		cout << "Nom:\t\tRoger Lamothe" << endl;
 		cout << "Né(e) le:\t1949-11-15\n";
@@ -142,6 +143,7 @@ void VueDuProfessionnelSante()
 		cout << "\n\tCode du professionnel de la santé\n";
 		cout << "\tCode PS:";
 		cin >> strCode;
+      Chargement(strCode, typeVision::PROFESSIONNEL);
 		cout << "--------------------\n";
 		cout << "Nom:\t\tLouise Décarie, chirurgienne cardiaque" << endl;
 		cout << "Né(e) le:\t1969-11-15\n";

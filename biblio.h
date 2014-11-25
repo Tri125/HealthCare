@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
-#include <iostream>
+#include <fstream>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 
@@ -12,3 +13,4 @@ using namespace std;
 #include "Probleme.h"
 #include "Blessure.h"
 #include "Maladie.h"
+#include "fonctions.h"
