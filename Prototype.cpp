@@ -173,28 +173,49 @@ void VueDuProfessionnelSante()
 {
    string strCode;
    char Choix;
+   bool erreur;
    do
    {
+      erreur = false;
       EcranBienvenue();
       cout << "\nProfil professionnel de la santé:\n";
       cout << "\n\tCode du professionnel de la santé\n";
       cout << "\tCode PS:";
       cin >> strCode;
-      Trouver(strCode, typeVision::PROFESSIONNEL);
-      cout << "--------------------\n";
-      cout << "Nom:\t\tLouise Décarie, chirurgienne cardiaque" << endl;
-      cout << "Né(e) le:\t1969-11-15\n";
-      cout << "--------------------\n";
-      cout << "Historique:\n\t8 patients \n\t14 interventions\n\n";
-      cout << "--------------------\n";
-
-      Choix = MenuVueProfessionnel();
-      switch (toupper(Choix))
+      try
       {
-      case 'P': ConsulterPatients(); break;
-      case 'I': ConsulterInterventions(); break;
-      case 'Q': break;
-      default: ErreurOption(Choix); break;
+         Trouver(strCode, typeVision::PROFESSIONNEL);
+      }
+      catch (runtime_error& e)
+      {
+         erreur = true;
+         cout << "Erreur: " << e.what() << endl;
+         Choix = MenuErreurCode();
+         switch (toupper(Choix))
+         {
+         case 'Q': return;
+         case 'S': break;
+         default: ErreurOption(Choix); break;
+         }
+      }
+      if (!erreur)
+      {
+
+         cout << "--------------------\n";
+         cout << "Nom:\t\tLouise Décarie, chirurgienne cardiaque" << endl;
+         cout << "Né(e) le:\t1969-11-15\n";
+         cout << "--------------------\n";
+         cout << "Historique:\n\t8 patients \n\t14 interventions\n\n";
+         cout << "--------------------\n";
+
+         Choix = MenuVueProfessionnel();
+         switch (toupper(Choix))
+         {
+         case 'P': ConsulterPatients(); break;
+         case 'I': ConsulterInterventions(); break;
+         case 'Q': break;
+         default: ErreurOption(Choix); break;
+         }
       }
    } while (Choix != 'Q');
 }
