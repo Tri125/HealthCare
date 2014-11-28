@@ -1,6 +1,6 @@
 #include "biblio.h"
 
-void Chargement(string id, typeVision vue)
+void Trouver(string id, typeVision vue)
 {
    const char SEPARATING_SYMBOL = ';';
    const string FICHIER_POPULATION = "population.txt";
@@ -55,13 +55,17 @@ void Chargement(string id, typeVision vue)
       ss.clear();
    }
    //Aucun resultat ou bon resultat ici
+   cout << endl;
+   system("pause");
+   if (!isFound)
+   {
+      throw runtime_error("Code non trouvé");
+   }
    cout << isFound << endl;
    for (string s : human)
    {
       cout << s << ";";
    }
-   cout << endl;
-   system("pause");
 }
 
 void ChargementCitoyen(vector<string> citoyen, typeVision);
