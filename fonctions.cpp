@@ -54,6 +54,7 @@ void Trouver(string id, typeVision vue)
       ss.str(std::string());
       ss.clear();
    }
+   ficIn.close();
    //Aucun resultat ou bon resultat ici
    cout << endl;
    system("pause");
@@ -66,6 +67,21 @@ void Trouver(string id, typeVision vue)
    {
       cout << s << ";";
    }
+   Chargement(human, vue);
 }
 
-void ChargementCitoyen(vector<string> citoyen, typeVision);
+Citoyen* Chargement(vector<string> citoyen, typeVision vue)
+{
+   switch (vue)
+   {
+   case typeVision::CITOYEN:
+      
+      break;
+
+   case typeVision::PROFESSIONNEL:
+      break;
+   default:
+      throw runtime_error("Chargement: typeVision non implémenté");
+   }
+   return nullptr;
+}

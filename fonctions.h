@@ -4,5 +4,4 @@ enum class typeVision
 };
 
 void Trouver(string, typeVision);
-void ChargementCitoyen(vector<string>);
-void ChargementPro(vector<string>);
+Citoyen* Chargement(vector<string> citoyen, typeVision);
