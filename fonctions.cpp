@@ -67,21 +67,40 @@ void Trouver(string id, typeVision vue)
    {
       cout << s << ";";
    }
-   Chargement(human, vue);
+   Citoyen* citoyen = ChargementCitoyen(human, vue);
 }
 
-Citoyen* Chargement(vector<string> citoyen, typeVision vue)
+
+Citoyen* ChargementCitoyen(vector<string> data, typeVision vue)
 {
+	Citoyen* citoyen;
    switch (vue)
    {
    case typeVision::CITOYEN:
-      
+	   //stoi: invalid_argument if conversion impossible, out_of_range exception if data can't fit into an int type.
+	   citoyen = new Citoyen(stoi(data[0]), data[1], data[2]);
       break;
 
    case typeVision::PROFESSIONNEL:
+	   //stoi: invalid_argument if conversion impossible, out_of_range exception if data can't fit into an int type.
+	   citoyen = new Professionnel(stoi(data[0]), data[1], data[2], data[3], data[4]);
       break;
    default:
       throw runtime_error("Chargement: typeVision non implémenté");
    }
-   return nullptr;
+   return citoyen;
+}
+
+
+list<RendezVous*> ChargementRendezVous(vector<string> citoyen)
+{
+	list<RendezVous*> liste;
+	return liste;
+}
+
+
+list<Probleme*> ChargementProbleme(vector<string> citoyen)
+{
+	list<Probleme*> liste;
+	return liste;
 }
