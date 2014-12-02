@@ -6,5 +6,6 @@ private:
 public:
 	Blessure();
 	Blessure(int, string, string, string, string);
+	void Afficher();
 };
 

@@ -10,5 +10,6 @@ protected:
 public:
    RendezVous();
    RendezVous(int, string, string, string);
+   virtual void Afficher();
 };
 

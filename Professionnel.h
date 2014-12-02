@@ -7,5 +7,6 @@ private:
 public:
    Professionnel();
    Professionnel(int, string, string, string, string);
+   string getCodePS();
 };
 

@@ -9,6 +9,8 @@ protected:
 public:
    Citoyen();
    Citoyen(int, string, string);
-   void RajoutRDV(list<RendezVous*>);
-   void RajoutProb(list<Probleme*>);
+   void RajoutUtilisation(list<RendezVous*>);
+   void RajoutProbleme(list<Probleme*>);
+   int getNAS();
+   virtual void Afficher();
 };

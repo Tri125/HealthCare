@@ -5,5 +5,5 @@ enum class typeVision
 
 void Trouver(string, typeVision);
 Citoyen* ChargementCitoyen(vector<string> citoyen, typeVision);
-list<RendezVous*> ChargementRendezVous(vector<string> citoyen);
-list<Probleme*> ChargementProbleme(vector<string> citoyen);
+list<RendezVous*> ChargementUtilisation(const string, string, typeVision);
+list<Probleme*> ChargementProbleme(const string, string);

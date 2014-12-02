@@ -9,3 +9,8 @@ Maladie::Maladie(int nas, string debut, string fin, string desc, string patho, i
 	stade = stad;
 }
 
+
+void Maladie::Afficher()
+{
+	return;
+}
