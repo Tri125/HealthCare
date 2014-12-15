@@ -68,10 +68,7 @@ void Trouver(string id, typeVision vue)
 		cout << s << ";";
 	}
 	Citoyen* citoyen = ChargementCitoyen(human, vue);
-	ss.str(std::string());
-	ss.clear();
-	ss << citoyen->getNAS();
-	citoyen->RajoutProbleme(ChargementProbleme(FICHIER_PROBLEME, ss.str()));
+	human.clear();
 	ss.str(std::string());
 	ss.clear();
 	switch (vue)
@@ -79,6 +76,7 @@ void Trouver(string id, typeVision vue)
 	case typeVision::CITOYEN:
 
 		ss << citoyen->getNAS();
+		citoyen->RajoutProbleme(ChargementProbleme(FICHIER_PROBLEME, ss.str()));
 		citoyen->RajoutUtilisation(ChargementUtilisation(FICHIER_UTILISATION, ss.str(), vue));
 		break;
 	case typeVision::PROFESSIONNEL:

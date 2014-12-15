@@ -3,6 +3,7 @@ class Professionnel : public Citoyen
 private:
    string codeps;
    string titre;
+   map<int, Citoyen*> mapPatients;
 
 public:
    Professionnel();
