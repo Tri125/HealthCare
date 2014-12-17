@@ -16,4 +16,5 @@ public:
    string getNaissance();
    virtual void Afficher();
    void AfficherMaladie();
+   void AfficherBlessure();
 };

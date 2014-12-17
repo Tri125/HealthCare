@@ -55,3 +55,14 @@ void Citoyen::AfficherMaladie()
 		}
 	}
 }
+
+void Citoyen::AfficherBlessure()
+{
+	for (Probleme* prob : problemes)
+	{
+		if (Blessure* bles = dynamic_cast<Blessure*>(prob))
+		{
+			bles->Afficher();
+		}
+	}
+}

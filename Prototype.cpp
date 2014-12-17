@@ -500,8 +500,9 @@ void ConsulterProbleme()
    EcranBienvenue();
    cout << "Problèmes médicaux de " << citoyen->getNom() << "\n-------------------------------------\n";
    cout << "Blessures:\n";
-   cout << "Type         Début        Guérison    Description \n";
-   cout << "__________________________________________________________________\n";
+   cout << "Type\t\tDébut\t\tGuérison\tDescription \n";
+   cout << "___________________________________________________________________\n";
+   citoyen->AfficherBlessure();
    //cout << "Fracture     2014-03-24               Fracture ouverte du tibia\n";
    //cout << "Brûlure      2011-02-02   2011-03-14  Brûlure 2ième degré au visage\n";
    //cout << "Contusion    2010-01-30   2010-02-01  Hématome majeur suite à un accident d'auto\n";
