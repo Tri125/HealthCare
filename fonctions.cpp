@@ -1,6 +1,6 @@
 #include "biblio.h"
 
-void Trouver(string id, typeVision vue)
+Citoyen* Trouver(string id, typeVision vue, bool modePatient)
 {
 	const char SEPARATING_SYMBOL = ';';
 	const string FICHIER_POPULATION = "population.txt";
@@ -56,17 +56,17 @@ void Trouver(string id, typeVision vue)
 	}
 	ficIn.close();
 	//Aucun resultat ou bon resultat ici
-	cout << endl;
-	system("pause");
+	/*cout << endl;*/
+	//system("pause");
 	if (!isFound)
 	{
 		throw runtime_error("Code non trouvé");
 	}
-	cout << isFound << endl;
-	for (string s : human)
-	{
-		cout << s << ";";
-	}
+	//cout << isFound << endl;
+	//for (string s : human)
+	//{
+	//	cout << s << ";";
+	//}
 	Citoyen* citoyen = ChargementCitoyen(human, vue);
 	human.clear();
 	ss.str(std::string());
@@ -84,7 +84,10 @@ void Trouver(string id, typeVision vue)
 		//Par l'exécution du code, nous savons déjà que le pointeur citoyen n'est qu'en fait un objet Professionnel créé dynamiquement.
 		//Nous pouvons utilisé un static_cast qui nous sauve quelques teste lors de l'exécution.
 		Professionnel* pp = static_cast<Professionnel*>(citoyen);
-		citoyen->RajoutUtilisation(ChargementUtilisation(FICHIER_UTILISATION, pp->getCodePS(), vue));
+		list<RendezVous*> lu = ChargementUtilisation(FICHIER_UTILISATION, pp->getCodePS(), vue);
+		citoyen->RajoutUtilisation(lu);
+		ChargementPatient(FICHIER_POPULATION, pp, lu);
+		//system("pause");
 		break;
 	}
 	default:
@@ -93,6 +96,7 @@ void Trouver(string id, typeVision vue)
 	}
 	ss.str(std::string());
 	ss.clear();
+	return citoyen;
 }
 
 
@@ -136,7 +140,8 @@ list<RendezVous*> ChargementUtilisation(const string nomFichier, string id, type
 		{
 			utilisation.push_back(data);
 		}
-		if (type == typeVision::CITOYEN && utilisation.front() == id || type == typeVision::PROFESSIONNEL && utilisation[1] == id)
+
+		if (utilisation.size() > 0 && (type == typeVision::CITOYEN && utilisation.front() == id || type == typeVision::PROFESSIONNEL && utilisation[1] == id))
 		{
 			switch (utilisation.size())
 			{
@@ -184,7 +189,7 @@ list<Probleme*> ChargementProbleme(const string nomFichier, string id)
 		{
 			probleme.push_back(data);
 		}
-		if (probleme.front() == id)
+		if (probleme.size() > 0 && probleme.front() == id)
 		{
 			switch (probleme.size())
 			{
@@ -209,4 +214,55 @@ list<Probleme*> ChargementProbleme(const string nomFichier, string id)
 	}
 	ficIn.close();
 	return liste;
+}
+
+void ChargementPatient(const string nomFichier, Professionnel* pro, list<RendezVous*> rdvListe)
+{
+	const char SEPARATING_SYMBOL = ';';
+	ifstream ficIn;
+	stringstream ss;
+	vector<string> patient;
+	string ligneCourante;
+	string data;
+	for (RendezVous* rdv : rdvListe)
+	{
+		ss << rdv->getNas();
+		//La clée n'existe pas
+		if (!pro->PatientExiste(rdv->getNas()))
+		{
+			//Peut lancer une exception runtime_error si getNas est un NAS qui n'existe pas.
+			//Citoyen* ci = Trouver(ss.str(), typeVision::CITOYEN, true);
+			pro->RajoutPatient(rdv->getNas(), nullptr);
+		}
+		ss.str(std::string());
+		ss.clear();
+	}
+
+	ficIn.open(nomFichier);
+	while (ficIn.good())
+	{
+		getline(ficIn, ligneCourante);
+		ss << ligneCourante;
+		while (getline(ss, data, SEPARATING_SYMBOL))
+		{
+			patient.push_back(data);
+		}
+		if (patient.size() == 0)
+		{
+			ss.str(std::string());
+			ss.clear();
+			patient.clear();
+			break;
+		}
+		int nas = atoi(patient[0].c_str());
+		if (pro->PatientExiste(nas))
+		{
+			pro->RajoutPatient(nas,ChargementCitoyen(patient, typeVision::CITOYEN));
+		}
+		ss.str(std::string());
+		ss.clear();
+		patient.clear();
+	}
+	ficIn.close();
+
 }

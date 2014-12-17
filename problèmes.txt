@@ -10324,6 +10324,7 @@
 169;Contusion;2003-03-08;2003-03-12;Contusion vicieuse au bras;
 1373;Contusion;2003-03-08;2003-03-12;Contusion très sévère aux ongles;
 5198;Contusion;2003-03-08;2003-05-29;Contusion pourrie à la colonne;
+
 1897;Fracture;2003-03-08;2003-03-30;fracture béante à l'aine;
 4571;Fracture;2003-03-08;2003-05-22;fracture négligée au pied;
 4185;Intoxication;2003-03-08;2003-04-17;Intoxication profonde à l'oreille;

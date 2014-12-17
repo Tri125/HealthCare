@@ -33,6 +33,8 @@ char MenuErreurCode();
 /
 /------------------------------------------------*/
 
+Citoyen* citoyen;
+
 int main()
 {
    char Choix = MenuPrincipal();
@@ -85,7 +87,7 @@ void VueDuCitoyen()
       cin >> strNAS;
       try
       {
-         Trouver(strNAS, typeVision::CITOYEN);
+         citoyen = Trouver(strNAS, typeVision::CITOYEN);
       }
       catch (runtime_error& e)
       {
@@ -102,13 +104,7 @@ void VueDuCitoyen()
       if (!erreur)
       {
 
-         cout << "--------------------\n";
-         cout << "Nom:\t\tRoger Lamothe" << endl;
-         cout << "Né(e) le:\t1949-11-15\n";
-         cout << "--------------------\n";
-         cout << "Historique:\n\t8 problèmes\n\t9 ressources utilisées\n\n";
-         cout << "--------------------\n";
-
+		 citoyen->Afficher();
          Choix = MenuVueCitoyen();
          switch (toupper(Choix))
          {
@@ -184,7 +180,7 @@ void VueDuProfessionnelSante()
       cin >> strCode;
       try
       {
-         Trouver(strCode, typeVision::PROFESSIONNEL);
+         citoyen = Trouver(strCode, typeVision::PROFESSIONNEL);
       }
       catch (runtime_error& e)
       {
@@ -201,12 +197,7 @@ void VueDuProfessionnelSante()
       if (!erreur)
       {
 
-         cout << "--------------------\n";
-         cout << "Nom:\t\tLouise Décarie, chirurgienne cardiaque" << endl;
-         cout << "Né(e) le:\t1969-11-15\n";
-         cout << "--------------------\n";
-         cout << "Historique:\n\t8 patients \n\t14 interventions\n\n";
-         cout << "--------------------\n";
+		 citoyen->Afficher();
 
          Choix = MenuVueProfessionnel();
          switch (toupper(Choix))

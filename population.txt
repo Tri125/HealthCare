@@ -7545,6 +7545,8 @@
 3534;beatrice chuck pierre;1957-12-14
 1982;beatrice chuck oups;1938-05-23
 1655;beatrice chuck noel;1934-07-15
+
+
 1723;beatrice chuck miranda;1935-04-07
 5488;beatrice chuck line;1982-04-07
 4071;beatrice chuck krusty;1965-03-07

@@ -10,6 +10,8 @@ protected:
 public:
    RendezVous();
    RendezVous(int, string, string, string);
+   int getNas();
+   string getCodePS();
    virtual void Afficher();
 };
 

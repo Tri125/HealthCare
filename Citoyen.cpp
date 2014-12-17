@@ -9,6 +9,15 @@ int Citoyen::getNAS()
 	return nas;
 }
 
+string Citoyen::getNom()
+{
+	return nom;
+}
+string Citoyen::getNaissance()
+{
+	return naissance;
+}
+
 void Citoyen::RajoutUtilisation(list<RendezVous*> liste)
 {
 	for (RendezVous* p : liste)
@@ -27,5 +36,10 @@ void Citoyen::RajoutProbleme(list<Probleme*> liste)
 
 void Citoyen::Afficher()
 {
-
+	cout << "--------------------\n";
+	cout << "Nom:\t\t" << nom << endl;
+	cout << "Né(e) le:\t" << naissance << endl;
+	cout << "--------------------\n";
+	cout << "Historique:\n\t" << problemes.size() << " problèmes\n\t" << rendezvous.size() << " ressources utilisées\n\n";
+	cout << "--------------------\n";
 }

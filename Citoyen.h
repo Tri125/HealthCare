@@ -12,5 +12,7 @@ public:
    void RajoutUtilisation(list<RendezVous*>);
    void RajoutProbleme(list<Probleme*>);
    int getNAS();
+   string getNom();
+   string getNaissance();
    virtual void Afficher();
 };
