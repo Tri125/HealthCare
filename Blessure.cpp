@@ -1,7 +1,7 @@
 #include "biblio.h"
 
 
-Blessure::Blessure(int n, string debut, string fin, string desc, string typ) :Probleme(n, debut, fin, desc), type(typ){}
+Blessure::Blessure(int n, string type, string debut, string fin, string description) :Probleme(n, debut, fin, description), type(type){}
 
 Blessure::Blessure() : type("N/A"){}
 
