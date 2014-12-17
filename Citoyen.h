@@ -15,4 +15,5 @@ public:
    string getNom();
    string getNaissance();
    virtual void Afficher();
+   void AfficherMaladie();
 };

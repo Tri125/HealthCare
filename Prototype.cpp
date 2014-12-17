@@ -498,21 +498,22 @@ void Interv_ETABLI()
 void ConsulterProbleme()
 {
    EcranBienvenue();
-   cout << "Problèmes médicaux de Roger Lamothe\n-------------------------------------\n";
+   cout << "Problèmes médicaux de " << citoyen->getNom() << "\n-------------------------------------\n";
    cout << "Blessures:\n";
    cout << "Type         Début        Guérison    Description \n";
-   cout << "______________________________________________________________\n";
-   cout << "Fracture     2014-03-24               Fracture ouverte du tibia\n";
-   cout << "Brûlure      2011-02-02   2011-03-14  Brûlure 2ième degré au visage\n";
-   cout << "Contusion    2010-01-30   2010-02-01  Hématome majeur suite à un accident d'auto\n";
-   cout << "Intoxication 2009-09-12   2010-04-12  Perte de vision suite à une surdose d'alcool\n";
+   cout << "__________________________________________________________________\n";
+   //cout << "Fracture     2014-03-24               Fracture ouverte du tibia\n";
+   //cout << "Brûlure      2011-02-02   2011-03-14  Brûlure 2ième degré au visage\n";
+   //cout << "Contusion    2010-01-30   2010-02-01  Hématome majeur suite à un accident d'auto\n";
+   //cout << "Intoxication 2009-09-12   2010-04-12  Perte de vision suite à une surdose d'alcool\n";
    cout << "\nMaladies:\n";
-   cout << "Pathologie            Stade Début       Guérison     Commentaire \n";
-   cout << "______________________________________________________________\n";
-   cout << "Schlérose en plaque   3     1990-01-24               État chronique mais stable\n";
-   cout << "Cancer de la prostate 1     1995-02-02  2000-12-20   Aucune récidive après plus de 5 ans\n";
-   cout << "Polyomiélite          2     1954-02-01  1956-11-30   Stabilisation de la maladie\n";
-   cout << "Gonorrhée             4     2009-09-12  2009-12-12   Guérison après anti-biotique\n";
+   cout << "Pathologie\tStade\tDébut\t\tGuérison\tCommentaire \n";
+   cout << "___________________________________________________________________\n";
+   citoyen->AfficherMaladie();
+   //cout << "Schlérose en plaque   3     1990-01-24               État chronique mais stable\n";
+   //cout << "Cancer de la prostate 1     1995-02-02  2000-12-20   Aucune récidive après plus de 5 ans\n";
+   //cout << "Polyomiélite          2     1954-02-01  1956-11-30   Stabilisation de la maladie\n";
+   //cout << "Gonorrhée             4     2009-09-12  2009-12-12   Guérison après anti-biotique\n";
    cout << endl;
    system("pause");
 }

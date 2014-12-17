@@ -2,7 +2,7 @@
 
 Citoyen::Citoyen() : nas(0), nom("N/A"), naissance("N/A"){}
 
-Citoyen::Citoyen(int nas, string nom, string nais) :nas(nas), nom(nom), naissance(nais){}
+Citoyen::Citoyen(int nas, string nom, string nais) : nas(nas), nom(nom), naissance(nais){}
 
 int Citoyen::getNAS()
 {
@@ -42,4 +42,16 @@ void Citoyen::Afficher()
 	cout << "--------------------\n";
 	cout << "Historique:\n\t" << problemes.size() << " problèmes\n\t" << rendezvous.size() << " ressources utilisées\n\n";
 	cout << "--------------------\n";
+}
+
+
+void Citoyen::AfficherMaladie()
+{
+	for (Probleme* prob : problemes)
+	{
+		if (Maladie* mal = dynamic_cast<Maladie*>(prob))
+		{
+			prob->Afficher();
+		}
+	}
 }
