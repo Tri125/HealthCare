@@ -12,5 +12,6 @@ Maladie::Maladie(int nas, string patho, string debut, string fin, string desc, i
 
 void Maladie::Afficher()
 {
+	cout << pathologie << "\t" << stade << "\t" << dateDebut << "\t" << dateFin << "\t" << description << endl;
 	return;
 }
