@@ -8,5 +8,6 @@ private:
 public:
    Hospitalisation();
    Hospitalisation(int, string, string, string, string, int);
+   void Afficher();
 };
 

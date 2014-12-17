@@ -17,4 +17,6 @@ public:
    virtual void Afficher();
    void AfficherMaladie();
    void AfficherBlessure();
+   void AfficherRendezVous();
+   void AfficherHospitalisation();
 };

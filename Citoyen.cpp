@@ -52,6 +52,7 @@ void Citoyen::AfficherMaladie()
 		if (Maladie* mal = dynamic_cast<Maladie*>(prob))
 		{
 			prob->Afficher();
+			cout << endl;
 		}
 	}
 }
@@ -63,6 +64,31 @@ void Citoyen::AfficherBlessure()
 		if (Blessure* bles = dynamic_cast<Blessure*>(prob))
 		{
 			bles->Afficher();
+			cout << endl;
+		}
+	}
+}
+
+void Citoyen::AfficherRendezVous()
+{
+	for (RendezVous* rdv : rendezvous)
+	{
+		if (!dynamic_cast<Hospitalisation*>(rdv))
+		{
+			rdv->Afficher();
+			cout << endl;
+		}
+	}
+}
+
+void Citoyen::AfficherHospitalisation()
+{
+	for (RendezVous* rdv : rendezvous)
+	{
+		if (Hospitalisation* hosp = dynamic_cast<Hospitalisation*>(rdv))
+		{
+			hosp->Afficher();
+			cout << endl;
 		}
 	}
 }

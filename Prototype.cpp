@@ -525,22 +525,24 @@ void ConsulterProbleme()
 void ConsulterRessource()
 {
    EcranBienvenue();
-   cout << "Ressources utilisées par Roger Lamothe\n-------------------------------------\n";
+   cout << "Ressources utilisées par " << citoyen->getNom() << "\n-------------------------------------\n";
    cout << "Rendez-vous simples:\n";
-   cout << "Établissement       Date         Code PS\n";
+   cout << "Établissement\t\tDate\t\tCode PS\n";
    cout << "______________________________________________\n";
-   cout << "CLSC du Sud         2012-01-24   D-128        \n";
-   cout << "CLSC du Sud         2011-02-02   D-145        \n";
-   cout << "Clinique des jeunes 2010-01-30   D-128        \n";
-   cout << "CH St-Jérôme        2009-09-12   P-334        \n";
-   cout << "CLSC St-Jérôme      2007-12-12   P-2828       \n";
+   citoyen->AfficherRendezVous();
+   //cout << "CLSC du Sud         2012-01-24   D-128        \n";
+   //cout << "CLSC du Sud         2011-02-02   D-145        \n";
+   //cout << "Clinique des jeunes 2010-01-30   D-128        \n";
+   //cout << "CH St-Jérôme        2009-09-12   P-334        \n";
+   //cout << "CLSC St-Jérôme      2007-12-12   P-2828       \n";
    cout << "\nHospitalisations:\n";
-   cout << "Etablissement            Arrivée      Code PS       Chambre Départ\n";
+   cout << "Etablissement\t\tArrivée\t\tCode PS\tChambre\tDépart\n";
    cout << "________________________________________________________________________\n";
-   cout << "CH Notre-Dame            2013-11-24   NC-103         233                 \n";
-   cout << "CH Hotel-Dieu            1995-02-02   D-1145        1544    1995-12-20    \n";
-   cout << "CH Notre-Dame            1954-02-01   G-8912         201    1954-11-30    \n";
-   cout << "CHU de Sherbrooke        2009-09-12   P-334          864    2009-10-02    \n";
+   citoyen->AfficherHospitalisation();
+   //cout << "CH Notre-Dame            2013-11-24   NC-103         233                 \n";
+   //cout << "CH Hotel-Dieu            1995-02-02   D-1145        1544    1995-12-20    \n";
+   //cout << "CH Notre-Dame            1954-02-01   G-8912         201    1954-11-30    \n";
+   //cout << "CHU de Sherbrooke        2009-09-12   P-334          864    2009-10-02    \n";
    cout << endl;
    system("pause");
 }

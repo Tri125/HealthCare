@@ -10,5 +10,10 @@ string RendezVous::getCodePS(){ return codeps; }
 
 void RendezVous::Afficher()
 {
-
+	cout << etablissement << "\t";
+	if (etablissement.length() <= 14)
+	{
+		cout << "\t";
+	}
+	cout << date << "\t" << codeps;
 }

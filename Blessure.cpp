@@ -12,5 +12,5 @@ void Blessure::Afficher()
 	{
 		cout << "\t";
 	}
-	cout << description << endl;
+	cout << description;
 }

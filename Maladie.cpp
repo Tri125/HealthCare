@@ -17,5 +17,5 @@ void Maladie::Afficher()
 	{
 		cout << "\t";
 	}
-	cout << description << endl;
+	cout << description;
 }
