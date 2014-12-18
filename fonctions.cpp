@@ -226,16 +226,12 @@ void ChargementPatient(const string nomFichier, Professionnel* pro, list<RendezV
 	string data;
 	for (RendezVous* rdv : rdvListe)
 	{
-		ss << rdv->getNas();
+		pro->AugmenteIntervention(rdv->getNas());
 		//La clée n'existe pas
 		if (!pro->PatientExiste(rdv->getNas()))
 		{
-			//Peut lancer une exception runtime_error si getNas est un NAS qui n'existe pas.
-			//Citoyen* ci = Trouver(ss.str(), typeVision::CITOYEN, true);
 			pro->RajoutPatient(rdv->getNas(), nullptr);
 		}
-		ss.str(std::string());
-		ss.clear();
 	}
 
 	ficIn.open(nomFichier);
@@ -252,7 +248,7 @@ void ChargementPatient(const string nomFichier, Professionnel* pro, list<RendezV
 			ss.str(std::string());
 			ss.clear();
 			patient.clear();
-			break;
+			continue;
 		}
 		int nas = atoi(patient[0].c_str());
 		if (pro->PatientExiste(nas))

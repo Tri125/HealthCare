@@ -35,3 +35,41 @@ void Professionnel::Afficher()
 	cout << "Historique:\n\t" << mapPatients.size() << " patients \n\t" << rendezvous.size() << " interventions\n\n";
 	cout << "--------------------\n";
 }
+
+list<Citoyen*> Professionnel::getListePatients()
+{
+	if (listePatients.size() == 0)
+	{
+		for (pair<int, Citoyen*> paire : mapPatients)
+		{
+			listePatients.push_back(paire.second);
+		}
+	}
+	return listePatients;
+}
+
+void Professionnel::AugmenteIntervention(int key)
+{
+	//La clée n'existe pas
+	if (mapNbrIntervention.count(key) == 0)
+	{
+		mapNbrIntervention[key] = 1;
+		return;
+	}
+	int pre = mapNbrIntervention[key];
+	mapNbrIntervention[key] = ++pre;
+		
+}
+
+void Professionnel::AfficherPatients()
+{
+	for (Citoyen* c : getListePatients())
+	{
+		cout << c->getNom() << "\t";
+		if (c->getNom().length() < 24)
+		{
+			cout << "\t";
+		}
+		cout << c->getNAS() << "\t" << c->getNaissance() << "\t" << mapNbrIntervention[c->getNAS()] << endl;
+	}
+}

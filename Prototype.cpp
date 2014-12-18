@@ -34,6 +34,7 @@ char MenuErreurCode();
 /------------------------------------------------*/
 
 Citoyen* citoyen;
+Professionnel* pro;
 
 int main()
 {
@@ -181,6 +182,8 @@ void VueDuProfessionnelSante()
       try
       {
          citoyen = Trouver(strCode, typeVision::PROFESSIONNEL);
+		 //Pour éviter de caster plus qu'une fois rendu dans les menus.
+		 pro = static_cast<Professionnel*>(citoyen);
       }
       catch (runtime_error& e)
       {
@@ -217,8 +220,8 @@ void VueDuProfessionnelSante()
 void EnteteListePatient()
 {
    EcranBienvenue();
-   cout << "Patients de Louise Décarie\n-------------------------------------\n";
-   cout << "NOM                           NAS     Naissance    Nombre d'interventions\n";
+   cout << "Patients de " << citoyen->getNom() << "\n-------------------------------------\n";
+   cout << "NOM\t\t\t\tNAS\tNaissance\tNombre d'interventions\n";
    cout << "____________________________________________________________\n";
 }
 
@@ -228,14 +231,15 @@ void EnteteListePatient()
 void Patient_nai()
 {
    EnteteListePatient();
-   cout << "André Jobin                    1     1912-01-30     3\n";
-   cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
-   cout << "Béatrice Marco                23     1972-01-30     2\n";
-   cout << "Françoise Dolto                3     1995-11-03     1\n";
-   cout << "Geneviève Letram               4     1996-10-31     1\n";
-   cout << "Hélène Lefebvre              345     1997-12-30     1\n";
-   cout << "Émile Ajar                     2     2002-01-30     1\n";
-   cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
+   pro->AfficherPatients();
+   //cout << "André Jobin                    1     1912-01-30     3\n";
+   //cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
+   //cout << "Béatrice Marco                23     1972-01-30     2\n";
+   //cout << "Françoise Dolto                3     1995-11-03     1\n";
+   //cout << "Geneviève Letram               4     1996-10-31     1\n";
+   //cout << "Hélène Lefebvre              345     1997-12-30     1\n";
+   //cout << "Émile Ajar                     2     2002-01-30     1\n";
+   //cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
    cout << endl;
    system("pause");
 }
@@ -335,7 +339,7 @@ void ConsulterPatients()
 {
    char Choix;
    EcranBienvenue();
-   cout << "\tPatients de Louise Décarie triés par:\n\n";
+   cout << "\tPatients de " << citoyen->getNom() <<  " triés par:\n\n";
    cout << "\tn-naissance .:\n";
    cout << "\tN-Naissance :.\n";
    cout << "\ta-NAS .:\n";
@@ -366,7 +370,7 @@ void ConsulterInterventions()
 {
    char Choix;
    EcranBienvenue();
-   cout << "\tInterventions de Louise Décarie triées par:\n\n";
+   cout << "\tInterventions de " << citoyen->getNom() << " triées par:\n\n";
    cout << "\td-date .:\n";
    cout << "\tD-date :.\n";
    cout << "\te-établissement .:\n";
@@ -393,7 +397,7 @@ void ConsulterInterventions()
 void Interv_date()
 {
    EcranBienvenue();
-   cout << "Interventions de Louise Décarie\n-------------------------------------\n";
+   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
    cout << "Patient                      NAS      Date      Établissement\n";
    cout << "________________________________________________________________________\n";
    cout << "André Jobin                    1   1989-01-24   CLSC du Sud\n";
@@ -420,7 +424,7 @@ void Interv_date()
 void Interv_DATE()
 {
    EcranBienvenue();
-   cout << "Interventions de Louise Décarie\n-------------------------------------\n";
+   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
    cout << "Patient                      NAS      Date      Établissement\n";
    cout << "________________________________________________________________________\n";
    cout << "Hélène Lefebvre              345   2014-01-12   CLSC du Sud\n";
@@ -446,7 +450,7 @@ void Interv_DATE()
 void Interv_etabli()
 {
    EcranBienvenue();
-   cout << "Interventions de Louise Décarie\n-------------------------------------\n";
+   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
    cout << "Patient                      NAS      Date      Établissement\n";
    cout << "________________________________________________________________________\n";
    cout << "Coralie Sanschagrin            2   2009-07-30   CH de St-Jérôme\n";
@@ -472,7 +476,7 @@ void Interv_etabli()
 void Interv_ETABLI()
 {
    EcranBienvenue();
-   cout << "Interventions de Louise Décarie\n-------------------------------------\n";
+   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
    cout << "Patient                      NAS      Date      Établissement\n";
    cout << "________________________________________________________________________\n";
    cout << "Diane Avecchagrin           7899   2012-04-22   CLSC du Nord\n";
@@ -503,18 +507,10 @@ void ConsulterProbleme()
    cout << "Type\t\tDébut\t\tGuérison\tDescription \n";
    cout << "___________________________________________________________________\n";
    citoyen->AfficherBlessure();
-   //cout << "Fracture     2014-03-24               Fracture ouverte du tibia\n";
-   //cout << "Brûlure      2011-02-02   2011-03-14  Brûlure 2ième degré au visage\n";
-   //cout << "Contusion    2010-01-30   2010-02-01  Hématome majeur suite à un accident d'auto\n";
-   //cout << "Intoxication 2009-09-12   2010-04-12  Perte de vision suite à une surdose d'alcool\n";
    cout << "\nMaladies:\n";
    cout << "Pathologie\tStade\tDébut\t\tGuérison\tCommentaire \n";
    cout << "___________________________________________________________________\n";
    citoyen->AfficherMaladie();
-   //cout << "Schlérose en plaque   3     1990-01-24               État chronique mais stable\n";
-   //cout << "Cancer de la prostate 1     1995-02-02  2000-12-20   Aucune récidive après plus de 5 ans\n";
-   //cout << "Polyomiélite          2     1954-02-01  1956-11-30   Stabilisation de la maladie\n";
-   //cout << "Gonorrhée             4     2009-09-12  2009-12-12   Guérison après anti-biotique\n";
    cout << endl;
    system("pause");
 }
@@ -530,19 +526,10 @@ void ConsulterRessource()
    cout << "Établissement\t\tDate\t\tCode PS\n";
    cout << "______________________________________________\n";
    citoyen->AfficherRendezVous();
-   //cout << "CLSC du Sud         2012-01-24   D-128        \n";
-   //cout << "CLSC du Sud         2011-02-02   D-145        \n";
-   //cout << "Clinique des jeunes 2010-01-30   D-128        \n";
-   //cout << "CH St-Jérôme        2009-09-12   P-334        \n";
-   //cout << "CLSC St-Jérôme      2007-12-12   P-2828       \n";
    cout << "\nHospitalisations:\n";
    cout << "Etablissement\t\tArrivée\t\tCode PS\tChambre\tDépart\n";
    cout << "________________________________________________________________________\n";
    citoyen->AfficherHospitalisation();
-   //cout << "CH Notre-Dame            2013-11-24   NC-103         233                 \n";
-   //cout << "CH Hotel-Dieu            1995-02-02   D-1145        1544    1995-12-20    \n";
-   //cout << "CH Notre-Dame            1954-02-01   G-8912         201    1954-11-30    \n";
-   //cout << "CHU de Sherbrooke        2009-09-12   P-334          864    2009-10-02    \n";
    cout << endl;
    system("pause");
 }
