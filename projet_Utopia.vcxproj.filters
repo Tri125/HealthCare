@@ -42,6 +42,15 @@
     <ClCompile Include="fonctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="indexation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sha1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DateEpoch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Citoyen.h">
@@ -69,6 +78,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="fonctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="indexation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sha1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nomFichier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DateEpoch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

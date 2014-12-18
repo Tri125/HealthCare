@@ -66,24 +66,31 @@
   <ItemGroup>
     <ClCompile Include="Blessure.cpp" />
     <ClCompile Include="Citoyen.cpp" />
+    <ClCompile Include="DateEpoch.cpp" />
     <ClCompile Include="fonctions.cpp" />
     <ClCompile Include="Hospitalisation.cpp" />
+    <ClCompile Include="indexation.cpp" />
     <ClCompile Include="Maladie.cpp" />
     <ClCompile Include="Probleme.cpp" />
     <ClCompile Include="Professionnel.cpp" />
     <ClCompile Include="Prototype.cpp" />
     <ClCompile Include="RendezVous.cpp" />
+    <ClCompile Include="sha1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="biblio.h" />
     <ClInclude Include="Blessure.h" />
     <ClInclude Include="Citoyen.h" />
+    <ClInclude Include="DateEpoch.h" />
     <ClInclude Include="fonctions.h" />
     <ClInclude Include="Hospitalisation.h" />
+    <ClInclude Include="indexation.h" />
     <ClInclude Include="Maladie.h" />
+    <ClInclude Include="nomFichier.h" />
     <ClInclude Include="Probleme.h" />
     <ClInclude Include="Professionnel.h" />
     <ClInclude Include="RendezVous.h" />
+    <ClInclude Include="sha1.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

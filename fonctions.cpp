@@ -1,11 +1,10 @@
 #include "biblio.h"
 
-Citoyen* Trouver(string id, typeVision vue, bool modePatient)
+
+Citoyen* Trouver(string id, typeVision vue, bool indexation)
 {
+	Index();
 	const char SEPARATING_SYMBOL = ';';
-	const string FICHIER_POPULATION = "population.txt";
-	const string FICHIER_PROBLEME = "problèmes.txt";
-	const string FICHIER_UTILISATION = "utilisations.txt";
 	bool isFound = false;
 	//const int NOMBRE_CHAMPS = 3;
 	string nomFichier = FICHIER_POPULATION;
