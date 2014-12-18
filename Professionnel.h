@@ -16,6 +16,7 @@ public:
    bool PatientExiste(int);
    void Afficher();
    list<Citoyen*> getListePatients();
+   void setListePatients(list<Citoyen*>);
    void AfficherPatients();
    void AugmenteIntervention(int);
    void AfficherInterventions();

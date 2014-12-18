@@ -29,6 +29,9 @@ void Quitter();
 void ErreurOption(char Choix);
 char MenuErreurCode();
 
+void Patient_sans();
+void Interv_sans();
+
 /*------------------------------------------------
 /
 /------------------------------------------------*/
@@ -225,15 +228,22 @@ void EnteteListePatient()
    cout << "____________________________________________________________\n";
 }
 
+
+void Patient_sans()
+{
+	EnteteListePatient();
+	pro->AfficherPatients();
+	cout << endl;
+	system("pause");
+}
+
 /*------------------------------------------------
 /
 /------------------------------------------------*/
 void Patient_nai()
 {
-   EnteteListePatient();
-   pro->AfficherPatients();
-   cout << endl;
-   system("pause");
+	TriePatient(pro, typeTriePatient::NAISSANCE, true);
+	Patient_sans();
 }
 
 /*------------------------------------------------
@@ -241,17 +251,8 @@ void Patient_nai()
 /------------------------------------------------*/
 void Patient_Nai()
 {
-   EnteteListePatient();
-   cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
-   cout << "Émile Ajar                     2     2002-01-30     1\n";
-   cout << "Hélène Lefebvre              345     1997-12-30     1\n";
-   cout << "Geneviève Letram               4     1996-10-31     1\n";
-   cout << "Françoise Dolto                3     1995-11-03     1\n";
-   cout << "Béatrice Marco                23     1972-01-30     2\n";
-   cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
-   cout << "André Jobin                    1     1912-01-30     3\n";
-   cout << endl;
-   system("pause");
+	TriePatient(pro, typeTriePatient::NAISSANCE, false);
+	Patient_sans();
 }
 
 /*------------------------------------------------
@@ -259,17 +260,8 @@ void Patient_Nai()
 /------------------------------------------------*/
 void Patient_oNom()
 {
-   EnteteListePatient();
-   cout << "André Jobin                    1     1912-01-30     3\n";
-   cout << "Béatrice Marco                23     1972-01-30     2\n";
-   cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
-   cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
-   cout << "Émile Ajar                     2     2002-01-30     1\n";
-   cout << "Françoise Dolto                3     1995-11-03     1\n";
-   cout << "Geneviève Letram               4     1996-10-31     1\n";
-   cout << "Hélène Lefebvre              345     1997-12-30     1\n";
-   cout << endl;
-   system("pause");
+	TriePatient(pro, typeTriePatient::NOM, true);
+	Patient_sans();
 }
 
 /*------------------------------------------------
@@ -277,17 +269,8 @@ void Patient_oNom()
 /------------------------------------------------*/
 void Patient_ONom()
 {
-   EnteteListePatient();
-   cout << "Hélène Lefebvre              345     1997-12-30     1\n";
-   cout << "Geneviève Letram               4     1996-10-31     1\n";
-   cout << "Françoise Dolto                3     1995-11-03     1\n";
-   cout << "Émile Ajar                     2     2002-01-30     1\n";
-   cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
-   cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
-   cout << "Béatrice Marco                23     1972-01-30     2\n";
-   cout << "André Jobin                    1     1912-01-30     3\n";
-   cout << endl;
-   system("pause");
+	TriePatient(pro, typeTriePatient::NOM, false);
+	Patient_sans();
 }
 
 /*------------------------------------------------
@@ -295,34 +278,16 @@ void Patient_ONom()
 /------------------------------------------------*/
 void Patient_aNAS()
 {
-   EnteteListePatient();
-   cout << "André Jobin                    1     1912-01-30     3\n";
-   cout << "Émile Ajar                     2     2002-01-30     1\n";
-   cout << "Françoise Dolto                3     1995-11-03     1\n";
-   cout << "Geneviève Letram               4     1996-10-31     1\n";
-   cout << "Béatrice Marco                23     1972-01-30     2\n";
-   cout << "Hélène Lefebvre              345     1997-12-30     1\n";
-   cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
-   cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
-   cout << endl;
-   system("pause");
+	TriePatient(pro, typeTriePatient::NAS, true);
+	Patient_sans();
 }
 /*------------------------------------------------
 /
 /------------------------------------------------*/
 void Patient_ANAS()
 {
-   EnteteListePatient();
-   cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
-   cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
-   cout << "Hélène Lefebvre              345     1997-12-30     1\n";
-   cout << "Béatrice Marco                23     1972-01-30     2\n";
-   cout << "Geneviève Letram               4     1996-10-31     1\n";
-   cout << "Françoise Dolto                3     1995-11-03     1\n";
-   cout << "Émile Ajar                     2     2002-01-30     1\n";
-   cout << "André Jobin                    1     1912-01-30     3\n";
-   cout << endl;
-   system("pause");
+	TriePatient(pro, typeTriePatient::NAS, false);
+	Patient_sans();
 }
 /*------------------------------------------------
 /
@@ -350,6 +315,7 @@ void ConsulterPatients()
    case 'A': Patient_ANAS(); break;
    case 'o': Patient_oNom(); break;
    case 'O': Patient_ONom(); break;
+   case 's': Patient_sans(); break;
    case 'Q': Quitter(); break;
    default: ErreurOption(Choix); break;
    }
@@ -377,10 +343,22 @@ void ConsulterInterventions()
    case 'D': Interv_DATE(); break;
    case 'e': Interv_etabli(); break;
    case 'E': Interv_ETABLI(); break;
-   case 's': Interv_ETABLI(); break;
+   case 's': Interv_sans(); break;
    case 'Q': Quitter(); break;
    default: ErreurOption(Choix); break;
    }
+}
+
+
+void Interv_sans()
+{
+	EcranBienvenue();
+	cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
+	cout << "Patient\t\t\t\tNAS\tDate\t\tÉtablissement\n";
+	cout << "________________________________________________________________________\n";
+	pro->AfficherInterventions();
+	cout << endl;
+	system("pause");
 }
 
 /*------------------------------------------------
@@ -388,27 +366,8 @@ void ConsulterInterventions()
 /------------------------------------------------*/
 void Interv_date()
 {
-   EcranBienvenue();
-   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
-   cout << "Patient\t\t\t\tNAS\tDate\t\tÉtablissement\n";
-   cout << "________________________________________________________________________\n";
-   pro->AfficherInterventions();
-   /*cout << "André Jobin                    1   1989-01-24   CLSC du Sud\n";
-   cout << "André Jobin                    1   2001-11-24   CLSC du Sud\n";
-   cout << "André Jobin                    1   2002-02-24   CH de St-Jérôme\n";
-   cout << "Béatrice Marco                23   2004-10-30   CLSC du Sud\n";
-   cout << "Béatrice Marco                23   2008-06-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2009-07-30   CH de St-Jérôme\n";
-   cout << "Coralie Sanschagrin            2   2010-06-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2010-11-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2011-10-30   CLSC du Sud\n";
-   cout << "Diane Avecchagrin           7899   2012-04-22   CLSC du Nord\n";
-   cout << "Émile Ajar                     2   2013-04-02   CH de St-Jérôme\n";
-   cout << "Françoise Dolto                3   2013-04-13   CH Hotel-Dieu\n";
-   cout << "Geneviève Letram               4   2013-04-19   CH de St-Jérôme\n";
-   cout << "Hélène Lefebvre              345   2014-01-12   CLSC du Sud\n";*/
-   cout << endl;
-   system("pause");
+	TrieIntervention(pro, typeTrieIntervention::DATE, true);
+	Interv_sans();
 }
 
 /*------------------------------------------------
@@ -416,25 +375,8 @@ void Interv_date()
 /------------------------------------------------*/
 void Interv_DATE()
 {
-   EcranBienvenue();
-   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
-   cout << "Patient                      NAS      Date      Établissement\n";
-   cout << "________________________________________________________________________\n";
-   cout << "Hélène Lefebvre              345   2014-01-12   CLSC du Sud\n";
-   cout << "Geneviève Letram               4   2013-04-19   CH de St-Jérôme\n";
-   cout << "Françoise Dolto                3   2013-04-13   CH Hotel-Dieu\n";
-   cout << "Émile Ajar                     2   2013-04-02   CH de St-Jérôme\n";
-   cout << "Diane Avecchagrin           7899   2012-04-22   CLSC du Nord\n";
-   cout << "Coralie Sanschagrin            2   2011-10-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2010-11-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2010-06-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2009-07-30   CH de St-Jérôme\n";
-   cout << "Béatrice Marco                23   2008-06-30   CLSC du Sud\n";
-   cout << "Béatrice Marco                23   2004-10-30   CLSC du Sud\n";
-   cout << "André Jobin                    1   2001-11-24   CLSC du Sud\n";
-   cout << "André Jobin                    1   1989-01-24   CLSC du Sud\n";
-   cout << endl;
-   system("pause");
+	TrieIntervention(pro, typeTrieIntervention::DATE, false);
+	Interv_sans();
 }
 
 /*------------------------------------------------
@@ -442,25 +384,8 @@ void Interv_DATE()
 /------------------------------------------------*/
 void Interv_etabli()
 {
-   EcranBienvenue();
-   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
-   cout << "Patient                      NAS      Date      Établissement\n";
-   cout << "________________________________________________________________________\n";
-   cout << "Coralie Sanschagrin            2   2009-07-30   CH de St-Jérôme\n";
-   cout << "Geneviève Letram               4   2013-04-19   CH de St-Jérôme\n";
-   cout << "Émile Ajar                     2   2013-04-02   CH de St-Jérôme\n";
-   cout << "Françoise Dolto                3   2013-04-13   CH Hotel-Dieu\n";
-   cout << "Diane Avecchagrin           7899   2012-04-22   CLSC du Nord\n";
-   cout << "Coralie Sanschagrin            2   2011-10-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2010-11-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2010-06-30   CLSC du Sud\n";
-   cout << "Hélène Lefebvre              345   2014-01-12   CLSC du Sud\n";
-   cout << "Béatrice Marco                23   2008-06-30   CLSC du Sud\n";
-   cout << "Béatrice Marco                23   2004-10-30   CLSC du Sud\n";
-   cout << "André Jobin                    1   2001-11-24   CLSC du Sud\n";
-   cout << "André Jobin                    1   1989-01-24   CLSC du Sud\n";
-   cout << endl;
-   system("pause");
+	TrieIntervention(pro, typeTrieIntervention::ETABLISSEMENT, true);
+	Interv_sans();
 }
 
 /*------------------------------------------------
@@ -468,25 +393,8 @@ void Interv_etabli()
 /------------------------------------------------*/
 void Interv_ETABLI()
 {
-   EcranBienvenue();
-   cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
-   cout << "Patient                      NAS      Date      Établissement\n";
-   cout << "________________________________________________________________________\n";
-   cout << "Diane Avecchagrin           7899   2012-04-22   CLSC du Nord\n";
-   cout << "Coralie Sanschagrin            2   2011-10-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2010-11-30   CLSC du Sud\n";
-   cout << "Coralie Sanschagrin            2   2010-06-30   CLSC du Sud\n";
-   cout << "Hélène Lefebvre              345   2014-01-12   CLSC du Sud\n";
-   cout << "Béatrice Marco                23   2008-06-30   CLSC du Sud\n";
-   cout << "Béatrice Marco                23   2004-10-30   CLSC du Sud\n";
-   cout << "André Jobin                    1   2001-11-24   CLSC du Sud\n";
-   cout << "André Jobin                    1   1989-01-24   CLSC du Sud\n";
-   cout << "Françoise Dolto                3   2013-04-13   CH Hotel-Dieu\n";
-   cout << "Coralie Sanschagrin            2   2009-07-30   CH de St-Jérôme\n";
-   cout << "Geneviève Letram               4   2013-04-19   CH de St-Jérôme\n";
-   cout << "Émile Ajar                     2   2013-04-02   CH de St-Jérôme\n";
-   cout << endl;
-   system("pause");
+	TrieIntervention(pro, typeTrieIntervention::ETABLISSEMENT, false);
+	Interv_sans();
 }
 
 /*------------------------------------------------

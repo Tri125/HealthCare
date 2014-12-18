@@ -74,6 +74,11 @@ void Professionnel::AfficherPatients()
 	}
 }
 
+void Professionnel::setListePatients(list<Citoyen*> liste)
+{
+	listePatients = liste;
+}
+
 void Professionnel::AfficherInterventions()
 {
 	for (RendezVous* rdv : rendezvous)

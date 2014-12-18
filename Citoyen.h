@@ -14,6 +14,8 @@ public:
    int getNAS();
    string getNom();
    string getNaissance();
+   list<RendezVous*> getListRdv();
+   void setListRdv(list<RendezVous*>);
    virtual void Afficher();
    void AfficherMaladie();
    void AfficherBlessure();

@@ -1,7 +1,7 @@
 #include "biblio.h"
 
 
-Citoyen* Trouver(string id, typeVision vue, bool indexation)
+Citoyen* Trouver(string id, typeVision vue)
 {
 	Index index;
 	bool isFound = false;
@@ -395,4 +395,153 @@ void ChargementPatient(const string nomFichier, Professionnel* pro, list<RendezV
 		}
 	}
 
+}
+
+
+bool compare_Nas(Citoyen* first, Citoyen* second)
+{
+	return (first->getNAS() > second->getNAS());
+}
+
+bool compare_nas(Citoyen* first, Citoyen* second)
+{
+	return (first->getNAS() < second->getNAS());
+}
+
+bool compare_nom(Citoyen* first, Citoyen* second)
+{
+	return (first->getNom() < second->getNom());
+}
+
+bool compare_Nom(Citoyen* first, Citoyen* second)
+{
+	return (first->getNom() > second->getNom());
+}
+
+bool compare_nais(Citoyen* first, Citoyen* second)
+{
+	string firstNais = first->getNaissance();
+	string secondNais = second->getNaissance();
+
+
+	DateEpoch firstEpoch = stringToEpoch(firstNais);
+
+	DateEpoch secondEpoch = stringToEpoch(secondNais);
+
+
+	return (firstEpoch.Epoch < secondEpoch.Epoch);
+}
+
+bool compare_Nais(Citoyen* first, Citoyen* second)
+{
+	string firstNais = first->getNaissance();
+	string secondNais = second->getNaissance();
+
+	DateEpoch firstEpoch = stringToEpoch(firstNais);
+
+	DateEpoch secondEpoch = stringToEpoch(secondNais);
+
+
+	return (firstEpoch.Epoch > secondEpoch.Epoch);
+}
+
+void TriePatient(Professionnel* pro, typeTriePatient type, bool croissant)
+{
+	list<Citoyen*>  li = pro->getListePatients();
+	switch (type)
+	{
+	case typeTriePatient::NAS:
+		if (croissant)
+			li.sort(compare_nas);
+		else
+			li.sort(compare_Nas);
+		break;
+	case typeTriePatient::NOM:
+		if (croissant)
+			li.sort(compare_nom);
+		else
+			li.sort(compare_Nom);
+		break;
+	case typeTriePatient::NAISSANCE:
+		if (croissant)
+			li.sort(compare_nais);
+		else
+			li.sort(compare_Nais);
+		break;
+	default:
+		break;
+	}
+	pro->setListePatients(li);
+}
+
+
+bool compare_date(RendezVous* first, RendezVous* second)
+{
+
+	string firstNais = first->getDate();
+	string secondNais = second->getDate();
+
+
+	DateEpoch firstEpoch = stringToEpoch(firstNais);
+
+	DateEpoch secondEpoch = stringToEpoch(secondNais);
+
+
+	return (firstEpoch.Epoch < secondEpoch.Epoch);
+}
+
+bool compare_Date(RendezVous* first, RendezVous* second)
+{
+	string firstNais = first->getDate();
+	string secondNais = second->getDate();
+
+
+	DateEpoch firstEpoch = stringToEpoch(firstNais);
+
+	DateEpoch secondEpoch = stringToEpoch(secondNais);
+
+
+	return (firstEpoch.Epoch > secondEpoch.Epoch);
+}
+
+bool compare_etab(RendezVous* first, RendezVous* second)
+{
+	return (first->getEtablissement() < second->getEtablissement());
+}
+
+bool compare_Etab(RendezVous* first, RendezVous* second)
+{
+	return (first->getEtablissement() > second->getEtablissement());
+}
+
+void TrieIntervention(Professionnel* pro, typeTrieIntervention type, bool croissant)
+{
+	list<RendezVous*> li = pro->getListRdv();
+	switch (type)
+	{
+	case typeTrieIntervention::DATE:
+		if (croissant)
+			li.sort(compare_date);
+		else
+			li.sort(compare_Date);
+		break;
+	case typeTrieIntervention::ETABLISSEMENT:
+		if (croissant)
+			li.sort(compare_etab);
+		else
+			li.sort(compare_Etab);
+		break;
+	default:
+		break;
+	}
+	pro->setListRdv(li);
+}
+
+
+DateEpoch stringToEpoch(string l)
+{
+	int annee = stoi(l.substr(0, 4));
+	int mois = stoi(l.substr(5, 7));
+	int jour = stoi(l.substr(8));
+	return DateEpoch(annee, mois, jour);
 }

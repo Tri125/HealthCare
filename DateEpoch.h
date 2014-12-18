@@ -14,6 +14,7 @@ class DateEpoch
 public:
    DateEpoch();
    DateEpoch(int, int, int, int, int, int);
+   DateEpoch(int, int, int);
    DateEpoch(int);
    time_t Epoch;
    void Affiche();

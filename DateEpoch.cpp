@@ -50,6 +50,17 @@ DateEpoch::DateEpoch(int A, int M, int J, int H, int Min, int Sec)
 	ConvertFormatToEpoch();
 }
 
+DateEpoch::DateEpoch(int A, int M, int J)
+{
+	An = A;
+	Mois = M;
+	Jour = J;
+	Heure = 0;
+	Minute = 0;
+	Seconde = 0;
+	ConvertFormatToEpoch();
+}
+
 DateEpoch::DateEpoch(int E)
 {
 	Epoch = E;

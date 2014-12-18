@@ -92,3 +92,13 @@ void Citoyen::AfficherHospitalisation()
 		}
 	}
 }
+
+void Citoyen::setListRdv(list<RendezVous*> li)
+{
+	rendezvous = li;
+}
+
+list<RendezVous*> Citoyen::getListRdv()
+{
+	return rendezvous;
+}
