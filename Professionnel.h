@@ -18,5 +18,6 @@ public:
    list<Citoyen*> getListePatients();
    void AfficherPatients();
    void AugmenteIntervention(int);
+   void AfficherInterventions();
 };
 

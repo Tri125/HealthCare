@@ -232,14 +232,6 @@ void Patient_nai()
 {
    EnteteListePatient();
    pro->AfficherPatients();
-   //cout << "André Jobin                    1     1912-01-30     3\n";
-   //cout << "Coralie Sanschagrin          437     1945-01-30     4\n";
-   //cout << "Béatrice Marco                23     1972-01-30     2\n";
-   //cout << "Françoise Dolto                3     1995-11-03     1\n";
-   //cout << "Geneviève Letram               4     1996-10-31     1\n";
-   //cout << "Hélène Lefebvre              345     1997-12-30     1\n";
-   //cout << "Émile Ajar                     2     2002-01-30     1\n";
-   //cout << "Diane Avecchagrin           7899     2012-01-30     1\n";
    cout << endl;
    system("pause");
 }
@@ -398,9 +390,10 @@ void Interv_date()
 {
    EcranBienvenue();
    cout << "Interventions de " << citoyen->getNom() << "\n-------------------------------------\n";
-   cout << "Patient                      NAS      Date      Établissement\n";
+   cout << "Patient\t\t\t\tNAS\tDate\t\tÉtablissement\n";
    cout << "________________________________________________________________________\n";
-   cout << "André Jobin                    1   1989-01-24   CLSC du Sud\n";
+   pro->AfficherInterventions();
+   /*cout << "André Jobin                    1   1989-01-24   CLSC du Sud\n";
    cout << "André Jobin                    1   2001-11-24   CLSC du Sud\n";
    cout << "André Jobin                    1   2002-02-24   CH de St-Jérôme\n";
    cout << "Béatrice Marco                23   2004-10-30   CLSC du Sud\n";
@@ -413,7 +406,7 @@ void Interv_date()
    cout << "Émile Ajar                     2   2013-04-02   CH de St-Jérôme\n";
    cout << "Françoise Dolto                3   2013-04-13   CH Hotel-Dieu\n";
    cout << "Geneviève Letram               4   2013-04-19   CH de St-Jérôme\n";
-   cout << "Hélène Lefebvre              345   2014-01-12   CLSC du Sud\n";
+   cout << "Hélène Lefebvre              345   2014-01-12   CLSC du Sud\n";*/
    cout << endl;
    system("pause");
 }

@@ -7,6 +7,8 @@ RendezVous::RendezVous(int n, string code, string etab, string d) :nas(n), codep
 
 int RendezVous::getNas(){ return nas; }
 string RendezVous::getCodePS(){ return codeps; }
+string RendezVous::getEtablissement(){ return etablissement; }
+string RendezVous::getDate(){ return date; }
 
 void RendezVous::Afficher()
 {

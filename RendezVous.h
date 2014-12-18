@@ -12,6 +12,8 @@ public:
    RendezVous(int, string, string, string);
    int getNas();
    string getCodePS();
+   string getEtablissement();
+   string getDate();
    virtual void Afficher();
 };
 

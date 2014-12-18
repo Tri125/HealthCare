@@ -73,3 +73,17 @@ void Professionnel::AfficherPatients()
 		cout << c->getNAS() << "\t" << c->getNaissance() << "\t" << mapNbrIntervention[c->getNAS()] << endl;
 	}
 }
+
+void Professionnel::AfficherInterventions()
+{
+	for (RendezVous* rdv : rendezvous)
+	{
+		string nom = mapPatients[rdv->getNas()]->getNom();
+		cout << nom << "\t";
+		if (nom.length() < 24)
+		{
+			cout << "\t";
+		}
+		cout << rdv->getNas() << "\t" << rdv->getDate() << "\t" << rdv->getEtablissement() << endl;
+	}
+}
