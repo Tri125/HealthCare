@@ -30,10 +30,28 @@ void DestroyIndex(const string root)
 		NULL };
 	SHFileOperation(&shfo);
 }
-bool isIndexed()
+bool isIndexed(string code)
 {
-	return false;
+	ifstream ficIn;
+	string databasePath = IndexingPath(code);
+	string absolutePath = INDEX_PATH + "\\" + databasePath;
+	ficIn.open(absolutePath);
+	return ficIn.is_open();
 }
+
+string IndexingPath(string code)
+{
+	unsigned char hash[20];
+	char hexstring[41];
+	string path;
+
+	sha1::calc(code.c_str(), code.length(), hash);
+	sha1::toHexString(hash, hexstring);
+	path = hexstring;
+	path.insert(2, "\\");
+	return path;
+}
+
 void Index()
 {
 	if (!isIndexValid(INDEX_PATH))
@@ -41,6 +59,24 @@ void Index()
 		DestroyIndex(INDEX_PATH);
 	}
 	CreateDirectory(INDEX_PATH.c_str(), NULL);
+	Indexing("12", "uN bon petit teste d'indexation");
+
+}
+
+void Indexing(string code, string ligne)
+{
+	string path = IndexingPath(code);
+	string fullPath = INDEX_PATH + "\\" + path.substr(0,2);
+	CreateDirectory(fullPath.c_str(),NULL);
+	fullPath = INDEX_PATH + "\\" + path;
+
+	ofstream ofFichierIndex(fullPath, ios::app);
+	ofFichierIndex << ligne << endl;
+	ofFichierIndex.close();
+}
+
+string getIndexed(string code)
+{
 
 }
 
