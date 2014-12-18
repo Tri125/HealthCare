@@ -86,7 +86,7 @@
     <ClInclude Include="Hospitalisation.h" />
     <ClInclude Include="indexation.h" />
     <ClInclude Include="Maladie.h" />
-    <ClInclude Include="nomFichier.h" />
+    <ClInclude Include="constants.h" />
     <ClInclude Include="Probleme.h" />
     <ClInclude Include="Professionnel.h" />
     <ClInclude Include="RendezVous.h" />

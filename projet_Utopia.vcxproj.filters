@@ -86,10 +86,10 @@
     <ClInclude Include="sha1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="nomFichier.h">
+    <ClInclude Include="DateEpoch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DateEpoch.h">
+    <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

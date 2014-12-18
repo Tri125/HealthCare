@@ -1,9 +1,22 @@
-bool isIndexValid(const string);
-void DestroyIndex(const string);
-bool isIndexed(string);
-void Indexing(string, string);
-void Index();
-string IndexingPath(string);
-int convertToEpoch(string);
-int obtenirDateFichier(string);
-string getIndexed(string);
+
+class Index{
+public:
+
+	enum class IndexType{
+		POPULATION, UTILISATION, PROBLEME
+	};
+	bool isIndexed(string, IndexType);
+	string getIndexed(string, IndexType);
+	void IndexData(string, string, IndexType);
+	list<string> getIndexedLines(string, IndexType);
+
+private:
+	bool isIndexValid(const string);
+	void DestroyIndex(const string);
+	string IndexingPath(string);
+	void ToIndex(string, string, IndexType);
+	int convertToEpoch(string);
+	int obtenirDateFichier(string);
+
+
+};

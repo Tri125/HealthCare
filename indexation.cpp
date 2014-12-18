@@ -3,7 +3,7 @@
 
 
 
-bool isIndexValid(const string root)
+bool Index::isIndexValid(const string root)
 {
 	int utili = obtenirDateFichier(FICHIER_UTILISATION);
 	int pop = obtenirDateFichier(FICHIER_POPULATION);
@@ -15,14 +15,14 @@ bool isIndexValid(const string root)
 }
 
 
-void DestroyIndex(const string root)
+void Index::DestroyIndex(const string root)
 {
 	//https://stackoverflow.com/questions/4180351/unable-to-delete-a-folder-with-shfileoperation
 	//Quand même dangereux...
 	SHFILEOPSTRUCT shfo = {
 		NULL,
 		FO_DELETE,
-		"E:\\Users\\Tristan\\Documents\\Visual Studio 2013\\Projects\\Alain\\OOP_TP4\\Index",
+		"E:\\Users\\Tristan\\Documents\\Visual Studio 2013\\Projects\\Alain\\OOP_TP4\\index",
 		NULL,
 		FOF_SILENT | FOF_NOERRORUI | FOF_NOCONFIRMATION,
 		FALSE,
@@ -30,16 +30,38 @@ void DestroyIndex(const string root)
 		NULL };
 	SHFileOperation(&shfo);
 }
-bool isIndexed(string code)
+bool Index::isIndexed(string code, IndexType type)
 {
 	ifstream ficIn;
 	string databasePath = IndexingPath(code);
-	string absolutePath = INDEX_PATH + "\\" + databasePath;
+	string pathType;
+	switch (type)
+	{
+	case IndexType::POPULATION:
+		pathType = "\\population";
+		break;
+	case IndexType::UTILISATION:
+		pathType = "\\utilisations";
+		break;
+	case IndexType::PROBLEME:
+		pathType = "\\problemes";
+		break;
+	default:
+		//erreur
+		break;
+	}
+	string absolutePath = INDEX_PATH + pathType + "\\" + databasePath;
 	ficIn.open(absolutePath);
-	return ficIn.is_open();
+	if (ficIn.is_open())
+	{
+		ficIn.close();
+		return true;
+	}
+	else
+		return false;
 }
 
-string IndexingPath(string code)
+string Index::IndexingPath(string code)
 {
 	unsigned char hash[20];
 	char hexstring[41];
@@ -52,36 +74,159 @@ string IndexingPath(string code)
 	return path;
 }
 
-void Index()
+void Index::IndexData(string code, string ligne, IndexType type)
 {
 	if (!isIndexValid(INDEX_PATH))
 	{
 		DestroyIndex(INDEX_PATH);
 	}
 	CreateDirectory(INDEX_PATH.c_str(), NULL);
-	Indexing("12", "uN bon petit teste d'indexation");
-
+	CreateDirectory((INDEX_PATH + "\\population").c_str(), NULL);
+	CreateDirectory((INDEX_PATH + "\\utilisations").c_str(), NULL);
+	CreateDirectory((INDEX_PATH + "\\problemes").c_str(), NULL);
+	ToIndex(code, ligne, type);
 }
 
-void Indexing(string code, string ligne)
+void Index::ToIndex(string code, string ligne, IndexType type)
 {
 	string path = IndexingPath(code);
-	string fullPath = INDEX_PATH + "\\" + path.substr(0,2);
-	CreateDirectory(fullPath.c_str(),NULL);
-	fullPath = INDEX_PATH + "\\" + path;
+	string pathType;
+	switch (type)
+	{
+	case IndexType::POPULATION:
+		pathType = "\\population";
+		break;
+	case IndexType::UTILISATION:
+		pathType = "\\utilisations";
+		break;
+	case IndexType::PROBLEME:
+		pathType = "\\problemes";
+		break;
+	default:
+		//erreur
+		break;
+	}
+	string fullPath = INDEX_PATH + pathType + "\\" + path.substr(0, 2);
+	CreateDirectory(fullPath.c_str(), NULL);
+	fullPath = INDEX_PATH + pathType + "\\" + path;
 
 	ofstream ofFichierIndex(fullPath, ios::app);
 	ofFichierIndex << ligne << endl;
 	ofFichierIndex.close();
 }
 
-string getIndexed(string code)
+string Index::getIndexed(string code, IndexType type)
 {
-
+	string ligneCourante;
+	ifstream ficIn;
+	string path = IndexingPath(code);
+	string pathType;
+	vector<string> vLigne;
+	stringstream ss;
+	string champs;
+	if (!isIndexed(code, type))
+		return ligneCourante;
+	switch (type)
+	{
+	case IndexType::POPULATION:
+		pathType = "\\population";
+		break;
+	case IndexType::UTILISATION:
+		pathType = "\\utilisations";
+		break;
+	case IndexType::PROBLEME:
+		pathType = "\\problemes";
+		break;
+	default:
+		//erreur
+		break;
+	}
+	string fullPath = INDEX_PATH + pathType + "\\" + path;
+	ficIn.open(fullPath);
+	while (ficIn.good())
+	{
+		getline(ficIn, ligneCourante);
+		ss << ligneCourante;
+		getline(ss, champs, SEPARATING_SYMBOL);
+		vLigne.push_back(champs);
+		if (vLigne.size() == 0)
+		{
+			ss.str(std::string());
+			ss.clear();
+			vLigne.clear();
+			continue;
+		}
+		//if (vLigne[0] != code)
+		//{
+		//	ligneCourante.clear();
+		//}
+		//else
+		//{
+		//	break;
+		//}
+		ss.str(std::string());
+		ss.clear();
+		vLigne.clear();
+		break;
+	}
+	ficIn.close();
+	return ligneCourante;
 }
 
 
-int obtenirDateFichier(string sNomFichier)
+list<string> Index::getIndexedLines(string code, IndexType type)
+{
+	list<string> results;
+	string ligneCourante;
+	ifstream ficIn;
+	string path = IndexingPath(code);
+	string pathType;
+	vector<string> vLigne;
+	stringstream ss;
+	string champs;
+	if (!isIndexed(code, type))
+		return results;
+	switch (type)
+	{
+	case IndexType::POPULATION:
+		pathType = "\\population";
+		break;
+	case IndexType::UTILISATION:
+		pathType = "\\utilisations";
+		break;
+	case IndexType::PROBLEME:
+		pathType = "\\problemes";
+		break;
+	default:
+		//erreur
+		break;
+	}
+	string fullPath = INDEX_PATH + pathType + "\\" + path;
+	ficIn.open(fullPath);
+	while (ficIn.good())
+	{
+		getline(ficIn, ligneCourante);
+		ss << ligneCourante;
+		getline(ss, champs, SEPARATING_SYMBOL);
+		vLigne.push_back(champs);
+		if (vLigne.size() == 0)
+		{
+			ss.str(std::string());
+			ss.clear();
+			vLigne.clear();
+			continue;
+		}
+		results.push_back(ligneCourante);
+		ss.str(std::string());
+		ss.clear();
+		vLigne.clear();
+	}
+	ficIn.close();
+	return results;
+}
+
+
+int Index::obtenirDateFichier(string sNomFichier)
 {
 	stringstream strTampon;
 	WIN32_FILE_ATTRIBUTE_DATA fileATTR;
