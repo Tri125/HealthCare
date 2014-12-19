@@ -14,6 +14,7 @@ private:
 
 public:
    Professionnel();
+   ~Professionnel();
    Professionnel(int, string, string, string, string);
    string getCodePS();
    void RajoutPatient(int, Citoyen*);

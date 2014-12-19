@@ -8,6 +8,7 @@ protected:
    list<RendezVous*> rendezvous;
 public:
    Citoyen();
+   virtual ~Citoyen();
    Citoyen(int, string, string);
    void RajoutUtilisation(list<RendezVous*>);
    void RajoutProbleme(list<Probleme*>);

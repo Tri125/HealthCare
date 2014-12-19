@@ -4,6 +4,21 @@ Citoyen::Citoyen() : nas(0), nom("N/A"), naissance("N/A"){}
 
 Citoyen::Citoyen(int nas, string nom, string nais) : nas(nas), nom(nom), naissance(nais){}
 
+Citoyen::~Citoyen()
+{
+	for (Probleme* p : problemes)
+	{
+		delete p;
+	}
+	problemes.clear();
+
+	for (RendezVous* rdv : rendezvous)
+	{
+		delete rdv;
+	}
+	rendezvous.clear();
+}
+
 int Citoyen::getNAS()
 {
 	return nas;

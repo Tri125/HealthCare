@@ -5,6 +5,18 @@ Professionnel::Professionnel() : codeps("N/A"), titre("N/A"){}
 
 Professionnel::Professionnel(int nas, string nom, string nais, string cps, string t) :Citoyen(nas, nom, nais), codeps(cps), titre(t){}
 
+Professionnel::~Professionnel()
+{
+	for (pair<int, Citoyen*> paire : mapPatients)
+	{
+		delete paire.second;
+	}
+	mapNbrIntervention.clear();
+	mapPatients.clear();
+	//Objet déjà deleted avec la mapPatients
+	listePatients.clear();
+}
+
 string Professionnel::getCodePS()
 {
 	return codeps;
