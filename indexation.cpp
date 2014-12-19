@@ -1,8 +1,27 @@
 #include "biblio.h"
 
+/*
+Utilise un principe d'indexation similaire à la base de donnée du logiciel git (sa base de donnée est un système de fichier).
+À partir d'une clée (NAS ou CodePS dans notre cas), calcule le SHA-1.
+Le checksum servira à faire un path dans le système de fichier, avec les 2 bytes plus significatif comme dossier, le reste du checksum
+sera le nom du fichier. Le contenue du fichier sera l'information indexé.
+
+En plus, séparation en trois "super-dossier" pour Utilisations, Problèmes et Population étant donnée que tout est indexé selon la même clée.
+Je voulais garder cette séparation par respect à la structure non-indexé.
+
+Comportement non-définie s'il y a une collision, très improbable, mais fera très mal.
+
+Note: 
+	-Par design, l'index sera difficilement lisible par un humain
+	-Duplication de donnée pour l'indexation d'un Professionnel puisqu'il a deux clée (NAS et CodePS) pour les deux vues différentes.
+
+*/
 
 
-
+/*
+Vérifie la validiter de l'index en comparant sa date de dernière modification avec les fichiers de données principaux.
+Retourne un bool de la réponse
+*/
 bool Index::isIndexValid(const string root)
 {
 	int utili = obtenirDateFichier(FICHIER_UTILISATION);
@@ -14,7 +33,9 @@ bool Index::isIndexValid(const string root)
 
 }
 
-
+/*
+Détruit l'intégralité de l'index.
+*/
 void Index::DestroyIndex(const string root)
 {
 	//https://stackoverflow.com/questions/4180351/unable-to-delete-a-folder-with-shfileoperation
@@ -30,6 +51,11 @@ void Index::DestroyIndex(const string root)
 		NULL };
 	SHFileOperation(&shfo);
 }
+
+/*
+Vérifie si la clée est déjà indexé en calculant le SHA-1
+et en essayant d'ouvrir le fichier qui est créé lors de l'indexation.
+*/
 bool Index::isIndexed(string code, IndexType type)
 {
 	ifstream ficIn;
@@ -61,6 +87,10 @@ bool Index::isIndexed(string code, IndexType type)
 		return false;
 }
 
+/*
+À partir de la clée, calcule le chemin du fichier qui sera créé à l'index.
+Retourne le string du path.
+*/
 string Index::IndexingPath(string code)
 {
 	unsigned char hash[20];
@@ -74,6 +104,12 @@ string Index::IndexingPath(string code)
 	return path;
 }
 
+
+/*
+Méthode publique pour indexé les données.
+À partir d'une clée (string), de la ligne de donnée à indexé et du type de l'index,
+créer les dossiers nécessaire à l'index
+*/
 void Index::IndexData(string code, string ligne, IndexType type)
 {
 	if (!isIndexValid(INDEX_PATH))
@@ -87,6 +123,11 @@ void Index::IndexData(string code, string ligne, IndexType type)
 	ToIndex(code, ligne, type);
 }
 
+
+/*
+Méthode qui créer le fichier et écrit les données à l'intérieur.
+Crée le dossier nécessaire à l'indexation de la ligne.
+*/
 void Index::ToIndex(string code, string ligne, IndexType type)
 {
 	string path = IndexingPath(code);
@@ -109,12 +150,16 @@ void Index::ToIndex(string code, string ligne, IndexType type)
 	string fullPath = INDEX_PATH + pathType + "\\" + path.substr(0, 2);
 	CreateDirectory(fullPath.c_str(), NULL);
 	fullPath = INDEX_PATH + pathType + "\\" + path;
-
+	//Ne remplace pas le contenue du fichier, mais écrit à la fin
 	ofstream ofFichierIndex(fullPath, ios::app);
 	ofFichierIndex << ligne << endl;
 	ofFichierIndex.close();
 }
 
+/*
+Retourne la ligne de donnée indexé à partir de la clée et du type de l'index.
+Plus pour Population que autre chose.
+*/
 string Index::getIndexed(string code, IndexType type)
 {
 	string ligneCourante;
@@ -173,7 +218,10 @@ string Index::getIndexed(string code, IndexType type)
 	return ligneCourante;
 }
 
-
+/*
+Retourne une list<string> du contenu complet du fichier de l'index pointé par la clée.
+Comme getIndexed, mais Problèmes et Utilisations n'ont pas des résultats unique pour chaque clée, alors il faut tout prendre.
+*/
 list<string> Index::getIndexedLines(string code, IndexType type)
 {
 	list<string> results;
@@ -225,7 +273,9 @@ list<string> Index::getIndexedLines(string code, IndexType type)
 	return results;
 }
 
-
+/*
+Méthode pour obtenir la date d'un fichier.
+*/
 int Index::obtenirDateFichier(string sNomFichier)
 {
 	stringstream strTampon;
@@ -236,9 +286,5 @@ int Index::obtenirDateFichier(string sNomFichier)
 	FileTimeToLocalFileTime(&ft, &ft); //Ajuste les fuseaux horaire
 	FileTimeToSystemTime(&ft, &st);
 
-	//strTampon << setfill('0');
-	//strTampon << right;
-	//strTampon << setw(4) << st.wYear << "-" << setw(2) << st.wMonth << "-" << setw(2) << st.wDay << ":" << setw(2) << st.wHour << ":" << setw(2) << st.wMinute << ":" << setw(2) << st.wSecond << ":" << setw(3) << st.wMilliseconds;
-	//strTampon << setfill(' ');
 	return DateEpoch(st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond).Epoch;
 }

@@ -10,19 +10,26 @@ string Professionnel::getCodePS()
 	return codeps;
 }
 
+//Remplace la valeur de la clée dans la map mapPatients<int,Citoyen*>
 void Professionnel::RajoutPatient(int key, Citoyen* value)
 {
 	//mapPatients.insert(std::pair<int, Citoyen*>(key, value));
 	mapPatients[key] = value;
 }
 
+/*
+Avec la clée, utilise mapPatients pour retourner un iterator pointant à la valeur.
+null si non existante.
+*/
 map<int, Citoyen*>::iterator Professionnel::TrouverPatient(int key)
 {
 	return mapPatients.find(key);
 }
 
+//Avec la clée, utilise mapPatients pour connaitre si la clée existe déjà dans la map mapPatients
 bool Professionnel::PatientExiste(int key)
 {
+	//C'est une map, donc c'est juste 0 ou 1 comme retour possible.
 	return mapPatients.count(key) > 0;
 }
 
@@ -36,26 +43,36 @@ void Professionnel::Afficher()
 	cout << "--------------------\n";
 }
 
+//Retourne la liste de patient (Citoyen*) du Professionnel
 list<Citoyen*> Professionnel::getListePatients()
 {
+	//Si la liste n'est déjà pas populer, la popule avec mapPatients.
 	if (listePatients.size() == 0)
 	{
 		for (pair<int, Citoyen*> paire : mapPatients)
 		{
+			//"second" étant la valeur.
+			//"first" serait la clée
 			listePatients.push_back(paire.second);
 		}
 	}
 	return listePatients;
 }
 
+/*
+Pour compter le nombre d'intervention que le Professionnel a fait a un patient.
+Avec une clée (le NAS du patient), augmente un compteur dans mapNbrIntervention.
+*/
 void Professionnel::AugmenteIntervention(int key)
 {
 	//La clée n'existe pas
 	if (mapNbrIntervention.count(key) == 0)
 	{
+		//C'est donc sa première intervention
 		mapNbrIntervention[key] = 1;
 		return;
 	}
+	//Retrouve le dernier compte et l'augmente
 	int pre = mapNbrIntervention[key];
 	mapNbrIntervention[key] = ++pre;
 		

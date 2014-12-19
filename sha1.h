@@ -25,6 +25,9 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+
+//https://code.google.com/p/smallsha1/
+
 #ifndef SHA1_DEFINED
 #define SHA1_DEFINED
 

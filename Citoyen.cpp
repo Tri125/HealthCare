@@ -18,6 +18,7 @@ string Citoyen::getNaissance()
 	return naissance;
 }
 
+//Rajoute les pointeurs sur un objet RendezVous d'une list à la list rendezvous.
 void Citoyen::RajoutUtilisation(list<RendezVous*> liste)
 {
 	for (RendezVous* p : liste)
@@ -26,6 +27,7 @@ void Citoyen::RajoutUtilisation(list<RendezVous*> liste)
 	}
 }
 
+//Rajoute les pointeurs sur un objet Probleme d'une list à la list problemes.
 void Citoyen::RajoutProbleme(list<Probleme*> liste)
 {
 	for (Probleme* p : liste)
@@ -49,6 +51,11 @@ void Citoyen::AfficherMaladie()
 {
 	for (Probleme* prob : problemes)
 	{
+		/*
+		dynamic_cast puisque nous voulons afficher seulement les pointeurs objets de la classe enfant "Maladie"
+		d'une liste de pointeur de la classe mère "Probleme".
+		Peut ensuite tester si objet est valide, null si invalide.
+		*/
 		if (Maladie* mal = dynamic_cast<Maladie*>(prob))
 		{
 			prob->Afficher();
@@ -61,6 +68,11 @@ void Citoyen::AfficherBlessure()
 {
 	for (Probleme* prob : problemes)
 	{
+		/*
+		dynamic_cast puisque nous voulons afficher seulement les pointeurs objets de la classe enfant "Blessure"
+		d'une liste de pointeur de la classe mère "Probleme".
+		Peut ensuite tester si objet est valide, null si invalide.
+		*/
 		if (Blessure* bles = dynamic_cast<Blessure*>(prob))
 		{
 			bles->Afficher();
@@ -73,6 +85,12 @@ void Citoyen::AfficherRendezVous()
 {
 	for (RendezVous* rdv : rendezvous)
 	{
+		/*
+		dynamic_cast puisque nous voulons afficher seulement les pointeurs objets de la classe mère "RendezVous"
+		d'une liste de pointeur qui contient des objets RendezVous et Hospitalisation. Nous voulons exclure les objets
+		Hospitalisation et étant donné que RendezVous est la classe de base, le upcast va toujours réussir de toute manière.
+		Downcast, teste la négativité. De cette manière on les excluts.
+		*/
 		if (!dynamic_cast<Hospitalisation*>(rdv))
 		{
 			rdv->Afficher();
@@ -85,6 +103,11 @@ void Citoyen::AfficherHospitalisation()
 {
 	for (RendezVous* rdv : rendezvous)
 	{
+		/*
+		dynamic_cast puisque nous voulons afficher seulement les pointeurs objets de la classe enfant "Hospitalisation"
+		d'une liste de pointeur de la classe mère RendezVous.
+		Peut ensuite tester si objet est valide, null si invalide.
+		*/
 		if (Hospitalisation* hosp = dynamic_cast<Hospitalisation*>(rdv))
 		{
 			hosp->Afficher();

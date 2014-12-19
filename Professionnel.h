@@ -3,8 +3,13 @@ class Professionnel : public Citoyen
 private:
    string codeps;
    string titre;
+   //key: NAS  value: Citoyen*
+   //Pour associé les Patients du Professionnel
    map<int, Citoyen*> mapPatients;
+   //Key: NAS value: nombre d'intervention
+   //Pour associé le nombre d'intervention que le patient a eu avec le Professionnel
    map<int, int> mapNbrIntervention;
+   //Créé à partir de la map, plus facile avec les sorts.
    list<Citoyen*> listePatients;
 
 public:
