@@ -105,6 +105,9 @@ void DateEpoch::ConvertFormatToEpoch()
 	timeinfo->tm_year = An - 1900;
 	timeinfo->tm_mon = Mois + 1;
 	timeinfo->tm_mday = Jour;
+	timeinfo->tm_hour = Heure;
+	timeinfo->tm_min = Minute;
+	timeinfo->tm_sec = Seconde;
 	Epoch = mktime(timeinfo);
 }
 

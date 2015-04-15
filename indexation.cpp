@@ -43,7 +43,7 @@ void Index::DestroyIndex(const string root)
 	SHFILEOPSTRUCT shfo = {
 		NULL,
 		FO_DELETE,
-		"E:\\Users\\Tristan\\Documents\\Visual Studio 2013\\Projects\\Alain\\OOP_TP4\\index",
+		"index",
 		NULL,
 		FOF_SILENT | FOF_NOERRORUI | FOF_NOCONFIRMATION,
 		FALSE,
