@@ -69,59 +69,74 @@ DateEpoch::DateEpoch(int E)
 
 void DateEpoch::ConvertEpochToFormat()
 {
-	struct tm* ptm = new struct tm;
-	localtime_s(ptm, &Epoch);
-	An = ptm->tm_year + 1900;
-	Mois = ptm->tm_mon + 1;
-	Jour = ptm->tm_mday;
-	Heure = ptm->tm_hour;
-	Minute = ptm->tm_min;
-	Seconde = ptm->tm_sec;
+	time_t rawtime;
+	struct tm * timeinfo;
+	time(&rawtime);
+	//https://stackoverflow.com/questions/119578/disabling-warnings-generated-via-crt-secure-no-deprecate
+#pragma warning(push)
+#pragma warning(disable: 4996) //4996 for _CRT_SECURE_NO_WARNINGS equivalent
+	// deprecated code here
+	timeinfo = localtime(&rawtime);
+#pragma warning(pop)
+	//struct tm* timeinfo = new struct tm;
+	//localtime_s(timeinfo, &Epoch);
+	An = timeinfo->tm_year + 1900;
+	Mois = timeinfo->tm_mon + 1;
+	Jour = timeinfo->tm_mday;
+	Heure = timeinfo->tm_hour;
+	Minute = timeinfo->tm_min;
+	Seconde = timeinfo->tm_sec;
 }
 
 void DateEpoch::ConvertFormatToEpoch()
 {
-	struct tm* ptm = new struct tm;
-	localtime_s(ptm, &Epoch);
+	time_t rawtime;
+	struct tm * timeinfo;
+	time(&rawtime);
+	//https://stackoverflow.com/questions/119578/disabling-warnings-generated-via-crt-secure-no-deprecate
+#pragma warning(push)
+#pragma warning(disable: 4996) //4996 for _CRT_SECURE_NO_WARNINGS equivalent
+	// deprecated code here
+	timeinfo = localtime(&rawtime);
+#pragma warning(pop)
 
-	ptm->tm_year = An - 1900;
-	ptm->tm_mon = Mois + 1;
-	ptm->tm_mday = Jour;
-	ptm->tm_hour = Heure;
-	ptm->tm_min = Minute;
-	ptm->tm_sec = Seconde;
-	Epoch = mktime(ptm);
+	//struct tm* timeinfo = new struct tm;
+	//localtime_s(timeinfo, &Epoch);
+	timeinfo->tm_year = An - 1900;
+	timeinfo->tm_mon = Mois + 1;
+	timeinfo->tm_mday = Jour;
+	Epoch = mktime(timeinfo);
 }
 
 //Définission des opérateurs de comparaisons
-bool DateEpoch::operator< (DateEpoch& rh)
+bool DateEpoch::operator< (const DateEpoch& rh)
 {
 	//Epoch étant le nombre de seconde écoulé depuis 1970, on peut le comparé directement
 	return this->Epoch < rh.Epoch;
 }
 
-bool DateEpoch::operator== (DateEpoch& rh)
+bool DateEpoch::operator== (const DateEpoch& rh)
 {
 
 	return this->Epoch == rh.Epoch;
 }
 
-bool DateEpoch::operator<= (DateEpoch& rh)
+bool DateEpoch::operator<= (const DateEpoch& rh)
 {
 	return this->Epoch <= rh.Epoch;
 }
 
-bool DateEpoch::operator!= (DateEpoch& rh)
+bool DateEpoch::operator!= (const DateEpoch& rh)
 {
 	return this->Epoch != rh.Epoch;
 }
 
-bool DateEpoch::operator>= (DateEpoch& rh)
+bool DateEpoch::operator>= (const DateEpoch& rh)
 {
 	return this->Epoch >= rh.Epoch;
 }
 
-bool DateEpoch::operator> (DateEpoch& rh)
+bool DateEpoch::operator> (const DateEpoch& rh)
 {
 	return this->Epoch > rh.Epoch;
 }

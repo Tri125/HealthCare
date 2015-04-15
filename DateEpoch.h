@@ -3,7 +3,7 @@
 
 class DateEpoch
 {
-   int DateEpoch::An;
+   int An;
    int Mois;
    int Jour;
    int Heure;
@@ -18,16 +18,16 @@ public:
    DateEpoch(int);
    time_t Epoch;
    void Affiche();
-   bool operator< (DateEpoch&);
-   bool operator<= (DateEpoch&);
-   bool operator== (DateEpoch&);
-   bool operator!= (DateEpoch&);
-   bool operator>= (DateEpoch&);
-   bool operator> (DateEpoch&);
+   bool operator< (const DateEpoch&);
+   bool operator<= (const DateEpoch&);
+   bool operator== (const DateEpoch&);
+   bool operator!= (const DateEpoch&);
+   bool operator>= (const DateEpoch&);
+   bool operator> (const DateEpoch&);
    string ToString();
 
 private:
 
-   void DateEpoch::ConvertEpochToFormat();
-   void DateEpoch::ConvertFormatToEpoch();
+   void ConvertEpochToFormat();
+   void ConvertFormatToEpoch();
 };
