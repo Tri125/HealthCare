@@ -23,7 +23,7 @@ Indexation
 
 Lors de la lecture, les données seront indexées. L'index est invalidé et supprimé si les fichiers de données (les fichiers textes) sont plus récents que l'index.
 
-Le système d'indexation s'inspire du même système utilisé par Git, un HASH, à partir de l'algorithme SHA1, est calculé par le code unique identifiant chaque données (CodePS ou le NAS). Les deux bytes les plus significatifs forment un dossier, le reste le nom d'un fichier sous ce dossier. Le contenu de ce fichier sont les données.
+Le système d'indexation s'inspire du même système utilisé par Git, un hash, à partir de l'algorithme SHA1, est calculé avec le code identifiant chaque données (CodePS ou le NAS). Les deux bytes les plus significatifs forment un dossier, alors que le reste du hash devient le nom d'un fichier. Le contenu de ce fichier sont les données.
 
 Limitation actuelles
 
