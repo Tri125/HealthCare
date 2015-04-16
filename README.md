@@ -5,7 +5,7 @@ Système de consultation de dossiers santé
 
 *OS: Windows 7 supporté*
 
-*Permet de consulter le dossier médicale de patients et de suivre*
+*Permet de consulter le dossier médicale de patients et de faire le suivi du travail des professionnels de la santé*
 
   * Consulter des professionnels de la santé à partir d'un code PS
   * Consulter la liste des patients et des interventions des professionnels.
